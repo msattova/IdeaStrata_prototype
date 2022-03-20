@@ -1,3 +1,4 @@
+<div>
   <form action="src/login.php" method="post">
     <p>
       <label for="username">ユーザ名：</label>
@@ -14,3 +15,4 @@
     <input type="hidden" name="token" value="<?= $token ?>">
     <button type="submit">ログイン</button>
   </form>
+</div>

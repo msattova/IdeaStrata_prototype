@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="w-full">
 
 <head>
   <meta charset="UTF-8">
@@ -9,8 +9,15 @@
   <title>Idea Strata</title>
 </head>
 
-<body>
+<body class="w-full">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-  <header>
-    <h1>Idea Strata</h1>
+  <header class="w-full m-8 flex flex-row flex-wrap justify-end">
+    <h1 class="font-bold tracking-wider text-2xl flex-auto">
+      Idea Strata
+    </h1>
+    <?php if (has_login()) : ?>
+      <span class="">
+        <a href="src/logout.php">ログアウト</a>
+      </span>
+    <?php endif; ?>
   </header>
