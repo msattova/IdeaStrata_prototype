@@ -5,7 +5,7 @@
   require_once $_SERVER['DOCUMENT_ROOT'] . '/idea_strata/vendor/autoload.php';
   require_once __DIR__ . '/src/functions.php';
   include_once __DIR__ . '/src/includes/header.php';
-  if(has_login()){
+  if (has_login()) {
     echo '<a href="src/logout.php">ログアウト</a>';
   }
   try {
@@ -17,24 +17,58 @@
     <h2>アイデアを登録</h2>
     <div id="resistor">
       <?php if (!has_login()) : ?>
-          <p>
-            アイデアを登録するにはログインが必要です。
-            <?php include_once __DIR__ . '/src/login_form.php';?>
-          </p>
-      <?php else: ?>
-      <form action="src/add.php" method="post">
         <p>
-          <label for="idea">アイデア（120字まで）</label>
-          <textarea name="idea" placeholder="アイデアを入力..." v-model="input" ref="area" :style="styles"></textarea>
+          アイデアを登録するにはログインが必要です。
+          <?php include_once __DIR__ . '/src/login_form.php'; ?>
         </p>
-        <p class='button'>
-          <input type="hidden" name="token" value="<?= $token ?>">
-          <button type="submit">登録</button>
-        </p>
-      </form>
+      <?php else : ?>
+        <form action="src/add.php" method="post">
+          <p>
+            <label for="idea">アイデア（120字まで）</label>
+            <textarea name="idea" placeholder="アイデアを入力..." v-model="input" ref="area" :style="styles"></textarea>
+          </p>
+          <p class='button'>
+            <input type="hidden" name="token" value="<?= $token ?>">
+            <button type="submit">登録</button>
+          </p>
+        </form>
       <?php endif; ?>
     </div>
-    <script src='<?=$_SERVER['DOCUMENT_ROOT']?>/idea_strata/js/adjust_textarea.js'></script>
+    <script>
+      new Vue({
+        el: "#resistor",
+        data() {
+          return {
+            input: "",
+            height: "2em",
+          };
+        },
+        computed: {
+          styles() {
+            return {
+              "height": this.height,
+            }
+          }
+        },
+        methods: {
+          resize() {
+            this.height = this.$refs.area.scrollHeight + 'px';
+            this.height = "auto";
+            this.$nextTick(() => {
+              this.height = this.$refs.area.scrollHeight + 'px';
+            })
+          }
+        },
+        watch: {
+          input() {
+            this.resize();
+          },
+        },
+        mounted() {
+          this.resize();
+        }
+      })
+    </script>
     <h2>アイデアリスト</h2>
     <div>
       <?php while ($row = $statement->fetch()) : ?>

@@ -28,6 +28,7 @@ try{
   $idea = toHTML($result['idea']);
 
   $html_form = <<<_HTML_
+<div id="edit">
 <form action="update.php" method="post">
       <input type='hidden' name='id' value='$id'>
       <p>
@@ -43,8 +44,42 @@ try{
         <button type="submit">更新</button>
       </p>
 </form>
-<script src='{$_SERVER['DOCUMENT_ROOT']}/idea_strata/js/adjust_textarea.js'></script>
-
+<script>
+      new Vue({
+        el: "#edit",
+        data() {
+          return {
+            input: "",
+            height: "2em",
+          };
+        },
+        computed: {
+          styles() {
+            return {
+              "height": this.height,
+            }
+          }
+        },
+        methods: {
+          resize() {
+            this.height = this.$refs.area.scrollHeight + 'px';
+            this.height = "auto";
+            this.$nextTick(() => {
+              this.height = this.$refs.area.scrollHeight + 'px';
+            })
+          }
+        },
+        watch: {
+          input() {
+            this.resize();
+          },
+        },
+        mounted() {
+          this.resize();
+        }
+      })
+</script>
+</div>
 _HTML_;
   include __DIR__ . '/includes/header.php';
   echo $html_form;
