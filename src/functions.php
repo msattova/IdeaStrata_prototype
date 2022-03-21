@@ -26,3 +26,7 @@ function has_login(): bool {
   return (isset($_SESSION) && array_key_exists('login', $_SESSION));
 }
 
+function has_good(): bool {
+  //TODO: ログインしてる場合はそのユーザが👍を押したか判定
+  return false;
+}

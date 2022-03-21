@@ -6,7 +6,7 @@
   require_once __DIR__ . '/src/functions.php';
   include_once __DIR__ . '/src/includes/header.php';
 ?>
-<div class="m-3">
+<div class="p-3">
     <p>アイデアを蓄積・共有しましょう</p>
     <?php include_once __DIR__ . '/src/includes/resister_form.php';?>
     <?php include_once __DIR__ . '/src/includes/list.php';?>

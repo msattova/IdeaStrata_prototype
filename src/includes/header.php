@@ -9,14 +9,14 @@
   <title>Idea Strata</title>
 </head>
 
-<body class="w-full">
+<body class="w-full pl-2 pr-2">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-  <header class="w-full m-8 flex flex-row flex-wrap justify-end">
-    <h1 class="font-bold tracking-wider text-2xl flex-auto">
+  <header class="w-full mt-8 mb-5 mr-0 flex flex-row flex-wrap justify-end">
+    <h1 class="ml-8 font-bold tracking-wider text-2xl flex-auto">
       Idea Strata
     </h1>
     <?php if (has_login()) : ?>
-      <span class="">
+      <span class="mr-4">
         <a href="src/logout.php">ログアウト</a>
       </span>
     <?php endif; ?>

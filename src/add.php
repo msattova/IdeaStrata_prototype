@@ -11,8 +11,8 @@ try {
   $dbh = open_db();
   $sql = 'INSERT INTO ideas (id, idea, user, created_time) VALUES(NULL, :idea, :user, NOW())';
   $stmt = $dbh->prepare($sql);
-  $idea = $_POST['idea'];
-  $user = (!has_login() ? $_POST['user'] : $_SESSION['username']);
+  $idea = toHTML($_POST['idea']);
+  $user = toHTML(!has_login() ? $_POST['user'] : $_SESSION['username']);
   $stmt->bindParam(":idea", $idea, PDO::PARAM_STR);
   $stmt->bindParam(":user", $user, PDO::PARAM_STR);
   $stmt->execute();

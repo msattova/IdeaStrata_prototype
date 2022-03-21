@@ -9,14 +9,6 @@ if (empty($_POST['id'])) {
 if (!is_id($_POST['id'])) {
   exit;
 }
-
-if (empty($_POST['idea'])) {
-  exit;
-}
-if (empty($_POST['user'])) {
-  exit;
-}
-
 try {
   $dbh = open_db();
   $sql = 'DELETE FROM ideas WHERE id=:id';
