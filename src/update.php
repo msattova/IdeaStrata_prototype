@@ -19,7 +19,7 @@ if (empty($_POST['user'])) {
 
 try{
   $dbh = open_db();
-  $sql = 'UPDATE ideas SET idea = :idea , created_time = NOW() WHERE id = :id';
+  $sql = 'UPDATE ideas SET idea = :idea , updated_time = NOW() WHERE id = :id';
   $stmt = $dbh->prepare($sql);
   $idea = $_POST['idea'];
   $id = (int) $_POST['id'];

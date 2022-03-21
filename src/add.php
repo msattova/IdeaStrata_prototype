@@ -5,16 +5,16 @@ include __DIR__.'/includes/header.php';
 
 date_default_timezone_set("Asia/Tokyo");
 $now = new DateTime();
-print $now->format('Y/m/d, G:i:s');
-
 try {
   $dbh = open_db();
-  $sql = 'INSERT INTO ideas (id, idea, user, created_time) VALUES(NULL, :idea, :user, NOW())';
+  $sql = 'INSERT INTO ideas (id, idea, user, user_id, created_time, updated_time, good) VALUES(NULL, :idea, :user, :userid, NOW(), NOW(), 0)';
   $stmt = $dbh->prepare($sql);
   $idea = toHTML($_POST['idea']);
-  $user = toHTML(!has_login() ? $_POST['user'] : $_SESSION['username']);
+  $user = toHTML($_SESSION['username']);
+  $user_id = $_SESSION['user_id'] ?? 0;
   $stmt->bindParam(":idea", $idea, PDO::PARAM_STR);
   $stmt->bindParam(":user", $user, PDO::PARAM_STR);
+  $stmt->bindParam(":userid", $user_id, PDO::PARAM_INT);
   $stmt->execute();
 
   echo <<< _TEXT_

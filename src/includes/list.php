@@ -2,7 +2,7 @@
     <?php
     try {
       $dbh = open_db();
-      $sql = 'SELECT * FROM ideas';
+      $sql = 'SELECT * FROM ideas ORDER BY created_time';
       $statement = $dbh->query($sql);
     ?>
       <div id="list" class="grid grid-cols-3 grid-rows-4">

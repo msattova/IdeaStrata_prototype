@@ -27,6 +27,7 @@ try {
     session_regenerate_id(true);
     $_SESSION['login'] = true;
     $_SESSION['username'] = $_POST['username'];
+    $_SESSION['user_id'] = $result['id'];
     header("Location: ../index.php");
   } else {
     echo 'Login Failed. Password invalid.';
