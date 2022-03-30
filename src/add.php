@@ -5,6 +5,12 @@ include __DIR__.'/includes/header.php';
 
 date_default_timezone_set("Asia/Tokyo");
 $now = new DateTime();
+
+if($_POST['idea'] === ''){
+  echo 'エラー！　アイデアが空です。';
+  exit;
+}
+
 try {
   $dbh = open_db();
   $sql = 'INSERT INTO ideas (id, idea, user, user_id, created_time, updated_time, good) VALUES(NULL, :idea, :user, :userid, NOW(), NOW(), 0)';
